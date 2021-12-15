@@ -263,24 +263,19 @@ def test(config, path, model):
 
 if __name__ == '__main__':
     
-    # define config parameters for training
-    config = {
-        'dataset_path': 'classes/',
-        'batch_size': 32,
-        'ckpt_path': 'model.pt',  # directory to save our model checkpoints
-        'num_epoch': 20,                 # number of epochs for training
-        'learning_rate': 1e-3,           # learning rate
-        'use_weighted': True,
-    }
-    # create dataset
-    dataset = Dataset(config['batch_size'], config['dataset_path'])
-    # create model
-    #model = ResNet18().to(device)
-    #model = torch.hub.load('pytorch/vision:v0.10.0', 'resnet18', pretrained=True).to(device)
-    model = torchvision.models.resnet18(pretrained=True)
-    model.fc = nn.Linear(512, 3)
-    model = model.to(device)
-    # train our model on dataset
-    train(config, dataset, model)
-    
-    #test(config, 'classes/test', model)
+# define config parameters for training
+config = {
+    'dataset_path': 'classes/',
+    'batch_size': 8,
+    'ckpt_path': 'model.pt',  # directory to save our model checkpoints
+    'num_epoch': 20,                 # number of epochs for training
+    'learning_rate': 1e-4,           # learning rate
+    'use_weighted': True,
+}
+dataset = Dataset(config['batch_size'], config['dataset_path'])
+model = torchvision.models.regnet_x_400mf(pretrained=True)
+
+model.fc = nn.Linear(400, 3)
+model = model.to(device)
+# train our model on dataset
+train(config, dataset, model)
