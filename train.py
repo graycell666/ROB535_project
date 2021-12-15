@@ -267,7 +267,7 @@ if __name__ == '__main__':
     config = {
         'dataset_path': 'classes/',
         'batch_size': 32,
-        'ckpt_path': 'checkpoints/cnnmodel.pt',  # directory to save our model checkpoints
+        'ckpt_path': 'model.pt',  # directory to save our model checkpoints
         'num_epoch': 20,                 # number of epochs for training
         'learning_rate': 1e-3,           # learning rate
         'use_weighted': True,
